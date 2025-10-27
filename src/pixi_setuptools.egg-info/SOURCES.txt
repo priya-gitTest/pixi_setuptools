@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+src/pixi_setuptools/__init__.py
+src/pixi_setuptools/_version.py
+src/pixi_setuptools/employees.yaml
+src/pixi_setuptools/yaml_processor.py
+src/pixi_setuptools.egg-info/PKG-INFO
+src/pixi_setuptools.egg-info/SOURCES.txt
+src/pixi_setuptools.egg-info/dependency_links.txt
+src/pixi_setuptools.egg-info/requires.txt
+src/pixi_setuptools.egg-info/top_level.txt

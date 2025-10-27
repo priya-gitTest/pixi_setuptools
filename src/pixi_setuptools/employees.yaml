@@ -1,0 +1,11 @@
+employees:
+  - name: John Doe
+    age: 28
+    skills:
+      - Python
+      - Django
+  - name: Jane Smith
+    age: 35
+    skills:
+      - JavaScript
+      - React

@@ -1,0 +1,82 @@
+[project]
+authors = [{name = "Priyanka O", email = "21082240+priya-gitTest@users.noreply.github.com"}]
+# Keeping PyYAML here, but will ensure it's in pixi dependencies too.
+dependencies = ["PyYAML==6.0.3"]
+name = "pixi_setuptools"
+requires-python = ">= 3.11"
+#version = "0.1.0"
+dynamic = ["version"]
+description = "An Example setuptools Project"
+readme = "README.md"
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+
+[build-system]
+build-backend = "setuptools.build_meta"
+# We need setuptools and setuptools-scm for the build backend
+requires = ["setuptools>=61.0", "setuptools-scm[toml]>=6.2"]
+
+# --- NEW: SETUPLTOOLS CONFIGURATION ---
+[tool.setuptools.packages]
+# This tells setuptools to find packages in the 'src/' layout
+find = { where = ["src"] }
+
+[tool.setuptools.package-data]
+# ADDED: Instructs setuptools to include the YAML file inside the package
+"pixi_setuptools" = ["employees.yaml"]
+
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-arm64", "osx-64"] # Recommended: Add other platforms for flexibility
+
+[tool.pixi.pypi-dependencies]
+pixi_setuptools = { path = ".", editable = true }
+
+[tool.pixi.tasks]
+
+[tool.setuptools_scm]
+# setuptools_scm versioning requires the [toml] dependency in build-system requires
+version_file = "src/pixi_setuptools/_version.py"
+
+
+[tool.pixi.dependencies]
+# Added PyYAML here to ensure it's available in the pixi environment for editable installs
+pyyaml = ">=6.0"
+
+[tool.pixi.feature.dev.dependencies]
+pytest = ">=8.0"
+ruff = ">=0.6"
+# ADDED: Build dependencies must be available in the pixi environment
+setuptools = ">=61.0"
+setuptools-scm = ">=6.2"
+twine = ">=5.0"
+
+[tool.pixi.feature.dev.pypi-dependencies]
+# ADDED: Explicitly installing the 'build' PyPI package to enable 'python -m build' command
+build = ">=1.0"
+
+[tool.pixi.environments]
+default = { features = ["dev"], solve-group = "default" }
+dev = { features = ["dev"], solve-group = "default" }
+
+[dependency-groups]
+dev = ["ruff"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+ignore = []
+
+[tool.pixi.feature.dev.tasks]
+lint = "ruff check src tests"
+format = "ruff format src tests"
+lint-fix = "ruff check --fix src tests"
+test = "pytest tests -v"
+build-package = "python -m build" # Added common build task

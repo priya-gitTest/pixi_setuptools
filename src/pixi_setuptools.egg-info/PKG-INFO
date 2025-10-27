@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: pixi_setuptools
+Version: 0.1.dev1+g547cee2fc
+Summary: An Example setuptools Project
+Author-email: Priyanka O <21082240+priya-gitTest@users.noreply.github.com>
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: PyYAML==6.0.3
+Dynamic: license-file
+
+# pixi_setuptools
